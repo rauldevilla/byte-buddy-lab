@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+}
+
+group 'com.runfalcon.bytebuddylab'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+
+task fatJar(type: Jar) {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    manifest {
+        attributes (
+                "Class-path": configurations.compileClasspath.collect { it.getName() }.join(' '),
+                "Main-Class": "com.runfalcon.bytebuddylab.Main",
+                "Implementation-Version": rootProject.version,
+        )
+    }
+    archiveName = "${project.name}.jar"
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+test {
+    useJUnitPlatform()
+}
