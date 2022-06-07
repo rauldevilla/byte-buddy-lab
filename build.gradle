@@ -29,6 +29,13 @@ task fatJar(type: Jar) {
     with jar
 }
 
+task runWithAgent(type: Exec) {
+    var agentPath = "../byte-buddy-agent/build/libs/byte-buddy-agent.jar"
+    var agentArgs = "blah"
+    var appJar = "./build/libs/byte-buddy-lab.jar"
+    commandLine "java", "-javaagent:${agentPath}=\"${agentArgs}\"", "-jar", appJar
+}
+
 test {
     useJUnitPlatform()
 }
