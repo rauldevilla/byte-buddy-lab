@@ -20,7 +20,7 @@ task fatJar(type: Jar) {
     manifest {
         attributes (
                 "Class-path": configurations.compileClasspath.collect { it.getName() }.join(' '),
-                "Main-Class": "com.runfalcon.bytebuddylab.Main",
+                "Main-Class": "com.example.bytebuddylab.app.Main",
                 "Implementation-Version": rootProject.version,
         )
     }

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 public class TestBusinessClass1 {
 
     @Test
-    public void testInvokeProcess() {
+    public void testInvokeProcess() throws Exception {
         BusinessProcess1 process1 = new BusinessProcess1();
         process1.doProcess(new BusinessClass1());
     }

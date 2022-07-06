@@ -15,11 +15,13 @@ public class BusinessProcessWorker {
             public void run() {
                 BusinessProcess1 process = new BusinessProcess1();
                 while (true) {
-                    process.doProcess(getBusinessClass());
                     try {
+                        process.doProcess(getBusinessClass());
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         break;
+                    } catch (BusinessProcessException e) {
+                        e.printStackTrace();
                     }
                 }
             }
